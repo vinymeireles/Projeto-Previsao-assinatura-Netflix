@@ -6,6 +6,7 @@ warnings.filterwarnings("ignore")
 import pickle
 import requests
 import gzip
+import streamlit.components.v1 as components
 
 #Apps
 st.set_page_config(page_title="App Previsão Assinantes e Recomendações Filmes e Séries NETFLIX", page_icon= "🎥")
@@ -75,7 +76,7 @@ if st.sidebar.checkbox("🎯**Previsões**", False, key=7):
     st.error("🎬 **Sistema de Recomendação de Filmes e Séries Netflix:**")
     st.markdown("")  
     
-    import streamlit.components.v1 as components
+
 
     imageCarouselComponent = components.declare_component("image-carousel-component", path="frontend/public")
 
