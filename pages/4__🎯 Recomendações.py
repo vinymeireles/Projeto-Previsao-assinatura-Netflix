@@ -8,6 +8,7 @@ import requests
 import gzip
 import streamlit.components.v1 as components
 
+
 #Apps
 st.set_page_config(page_title="App Previsão Assinantes e Recomendações Filmes e Séries NETFLIX", page_icon= "🎥")
 st.header("📊 Analytics Recomendações de Filmes/Séries NETFLIX", divider='red')
@@ -24,14 +25,7 @@ def load_data():
 
 data = load_data()
 
-#Função para importar images movies
-def fetch_poster(movie_id):
-     url = "https://api.themoviedb.org/3/movie/{}?api_key=c7ec19ffdd3279641fb606d19ceb9bb1&language=en-US".format(movie_id)
-     data=requests.get(url)
-     data=data.json()
-     poster_path = data['poster_path']
-     full_path = "https://image.tmdb.org/t/p/w500/"+poster_path
-     return full_path
+
 
 movies = pickle.load(open("movies_list.pkl", 'rb'))
 similarity = pickle.load(open("similarity.pkl", 'rb'))
@@ -76,7 +70,14 @@ if st.sidebar.checkbox("🎯**Previsões**", False, key=7):
     st.error("🎬 **Sistema de Recomendação de Filmes e Séries Netflix:**")
     st.markdown("")  
     
-
+    #Função para importar images movies
+    def fetch_poster(movie_id):
+        url = "https://api.themoviedb.org/3/movie/{}?api_key=c7ec19ffdd3279641fb606d19ceb9bb1&language=en-US".format(movie_id)
+        data=requests.get(url)
+        data=data.json()
+        poster_path = data['poster_path']
+        full_path = "https://image.tmdb.org/t/p/w500/"+poster_path
+        return full_path
 
     imageCarouselComponent = components.declare_component("image-carousel-component", path="frontend/public")
 
