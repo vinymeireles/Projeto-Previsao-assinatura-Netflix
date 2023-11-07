@@ -151,7 +151,7 @@ if st.sidebar.checkbox("📊 **Gráficos**", False, key=2):
     if not st.checkbox('Ocultar gráfico 1', False, key=3):    
         st.markdown("")
         with st.spinner("Aguarde..."):
-            time.sleep(15)
+            time.sleep(20)
 
     #Gráfico 1 Mundial Mapa
         country = data['country']
