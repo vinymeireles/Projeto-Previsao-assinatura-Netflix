@@ -235,6 +235,7 @@ if st.sidebar.checkbox("📊 **Gráficos**", False, key=2):
     ############# Gráfico 3 ################################################################
     if not st.checkbox('Ocultar gráfico 3', False, key=5): 
         st.subheader("📈 Qual a preferência dos assinantes? Filmes ou Séries.", divider='red')
+
         type_data = data[['type','release_year']]
         TV_show = type_data[type_data['type'] =='TV Show'].groupby('release_year')['type'].count()
         Movie = type_data[type_data['type'] =='Movie'].groupby('release_year')['type'].count()
@@ -377,7 +378,53 @@ if st.sidebar.checkbox("📊 **Gráficos**", False, key=2):
         st.pyplot(fig)
         st.info("📌Comparando os gêneros de filmes e séries favoritos do Netflix, temos que o 1º, 2º e 3º são os mesmos que Internacionais, Dramas, Comédias.")
    
- 
+        #Gráfico 5
+        if not st.checkbox('Ocultar gráfico 4', False, key=7): 
+            st.subheader("🌍 País aonde o ator mais atuou nos Filmes e Séries", divider='red')
+            
+            # dados exploratórios
+            each_actor = []
+            countries_actor = list(data['country'].value_counts()[:15].index)
+            for countries in countries_actor:
+                tmp = data[data['country'] == countries].copy()
+                tmp = tmp.reset_index(drop=True)
+                actors= []
+                for i in range(len(tmp)):
+                    if tmp.loc[i,'cast'] =='NaN' or type(tmp.loc[i,'cast']) !=str:
+                        continue
+                    elif "," not in tmp.loc[i,'cast']:
+                        actors.append(tmp.loc[i,'cast'])
+                    else:
+                        for j in tmp.loc[i,'cast'].split(", "):
+                            actors.append(j)
+                print(countries, " : ",sorted(Counter(actors).items(), key= lambda x :x[1],reverse=True)[0])
+                each_actor.append(sorted(Counter(actors).items(), key= lambda x :x[1],reverse=True)[0][0])
+                
+            countries_actor[0] = 'United States of America'    
+
+            # Gráfico    
+            fig, ax = plt.subplots(figsize=(25,15),facecolor="#363336")
+            ax.patch.set_facecolor('#363336')
+            world.plot(ax=ax, color ="#363336",edgecolor='black')
+            world2.plot(column='count',ax=ax, cmap='OrRd', scheme='quantiles', edgecolor='black')
+            plt.text(s="The actor who appeared the most", x=-200 ,y=110, font=font,color='#F5E9F5', va="center",ha="left",fontsize=30)
+            plt.text(s="Netflix", x=135 ,y=110, font=font,color='red', va="center",ha="left",fontsize=80)
+
+            plt.axis('off')
+
+            for i in range(15):
+                x,y = str(world[world['name'] == countries_actor[i]]['geometry'].centroid).split('(')[1].split(')')[0].split(' ')
+                x,y = float(x),float(y)
+                if i == 3:
+                    y+=5
+                if i == 4:
+                    y-=5
+                if i == 7:
+                    y+=5
+                plt.text(s=f"{each_actor[i]}", x=x ,y=y, font=font,color='#F5E9F5', va="center",ha="center",fontsize=25)
+            st.pyplot(fig)
+            st.info("📌Países aonde o ator mais atuou nos Filmes e Séries da Netflix.")
+
 
 #Mensagem de atualização da página web    
 st.toast("Página atualizada!", icon='✅')
