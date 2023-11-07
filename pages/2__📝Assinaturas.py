@@ -11,6 +11,7 @@ pio.templates.default = "plotly_white"
 from statsmodels.tsa.arima.model import ARIMA
 from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
 from streamlit_extras.metric_cards import style_metric_cards
+
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -108,7 +109,6 @@ if st.sidebar.checkbox("📝 **Estatística**", False, key=2, help="Estatística
     with col3:
         st.metric(label="Média anual:", value=median)   
     st.divider()
-    style_metric_cards(background_color="#831010",border_left_color="#F71938",border_color="#FFC0CB",box_shadow="#F71938")
     
     #### Estatísticas de Perfil dos assinantes Netflix #######################################################
 
@@ -156,7 +156,8 @@ if st.sidebar.checkbox("📝 **Estatística**", False, key=2, help="Estatística
         st.metric(label="Masculino: ", value = male_count)
     with col3:
         st.metric(label = "Total de Assinantes: ", value = male_count+female_count)    
-    
+
+
     col1, col2, col3 = st.columns(3)
     with col1:
         st.metric(label="Idade assinantes + frequente:" ,value= idade_freq)
@@ -164,6 +165,7 @@ if st.sidebar.checkbox("📝 **Estatística**", False, key=2, help="Estatística
         st.metric(label="O dispositivo + usado:" ,value= device_max)       
     with col3:
         st.metric(label="País com + assinantes:" ,value= pais_max)   
+
 
     st.divider()
     st.markdown("👫**Nº de assinantes por plano 💳:**")
@@ -174,6 +176,7 @@ if st.sidebar.checkbox("📝 **Estatística**", False, key=2, help="Estatística
         st.metric(label="Plano Standard:" ,value= standard)       
     with col3:
         st.metric(label="Plano Premium:" ,value= premium)
+   
 
     st.divider()
     st.markdown("💻**Total de Dispositivos:** 📱📺")
@@ -186,7 +189,8 @@ if st.sidebar.checkbox("📝 **Estatística**", False, key=2, help="Estatística
         st.metric(label="Total Smartphone:" ,value= smartphone)
     with col4:
         st.metric(label="Total Smart TV:" ,value= smartTV)
-
+    
+    style_metric_cards(background_color="#831010",border_left_color="#F71938",border_color="#FFC0CB",box_shadow="#F71938")
 
 ############ Mostrar Gráficos ########################################################
 #### Gráficos de perfil de assinantes:
