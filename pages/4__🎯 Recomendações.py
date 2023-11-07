@@ -25,8 +25,7 @@ def load_data():
 
 data = load_data()
 
-
-
+####Load Model Machine Learning#################
 movies = pickle.load(open("movies_list.pkl", 'rb'))
 similarity = pickle.load(open("similarity.pkl", 'rb'))
 movies_list = movies['title'].values

@@ -233,87 +233,10 @@ if st.sidebar.checkbox("📊 **Gráficos**", False, key=2):
         st.divider()
 
     ############# Gráfico 3 ################################################################
-    if not st.checkbox('Ocultar gráfico 3', False, key=5): 
-        st.subheader("📈 Qual a preferência dos assinantes? Filmes ou Séries.", divider='red')
-
-        type_data = data[['type','release_year']]
-        TV_show = type_data[type_data['type'] =='TV Show'].groupby('release_year')['type'].count()
-        Movie = type_data[type_data['type'] =='Movie'].groupby('release_year')['type'].count()
-
-        fig, ax = plt.subplots(figsize=(25,20),facecolor="#363336")
-        ax.patch.set_facecolor('#363336')
-
-        spec = gridspec.GridSpec(ncols=21, nrows=21, figure=fig)
-        ax1 = fig.add_subplot(spec[:10, :],facecolor="#363336")
-        ax2 = fig.add_subplot(spec[11:, :10],facecolor="#363336")
-        ax3 = fig.add_subplot(spec[11:, 11:],facecolor="#363336")
-
-
-        ax1.scatter(x= list(dict(TV_show).keys())[-3],y=list(dict(TV_show).values())[-3],s=300, color='#F5E9F5')
-        ax1.scatter(x= list(dict(Movie).keys())[-3],y=list(dict(Movie).values())[-3],s=300, color='red')
-        sns.lineplot(x= list(dict(TV_show).keys())[:-2],y=list(dict(TV_show).values())[:-2],lw=5, color='#F5E9F5',ax=ax1)
-        sns.lineplot(x= list(dict(Movie).keys())[:-2],y=list(dict(Movie).values())[:-2],lw=5, color='red',ax=ax1)
-        ax1.text(s="Movie", x=2013.5, y= 600,font=font,color='red', va="center",ha="left",fontsize=40)
-        ax1.text(s="TV show", x=2015.5, y= 400,font=font,color='#F5E9F5', va="center",ha="left",fontsize=40)
-        ax1.set_xticks(list(range(2000,2022,2)))
-        ax1.tick_params(axis='x', colors='#F5E9F5',labelsize=15) 
-        ax1.tick_params(axis='y', colors='#F5E9F5',labelsize=15)
-        ax1.spines['bottom'].set_color('white')
-        ax1.spines['left'].set_color('white')
-        ax1.set_xlabel("")
-        ax1.set_ylabel("")
-        ax1.set_xlim(2000,2020)
-        ax1.spines['right'].set_visible(False)
-        ax1.spines['top'].set_visible(False)
-        ax1.grid(True, alpha=0.4)
-        ax1.text(s="Movie vs TV Show, Trend analysis", x= 2000.5,y=700, font=font,color='#F5E9F5',fontsize=50)
-
-
-        moive_running_time = data[data['type'] =='Movie']['duration'].apply(lambda x : x.split(" ")[0])
-        moive_running_time = pd.to_numeric(moive_running_time)
-        movie_running_time = pd.DataFrame(moive_running_time)
-        def make_range(x):
-            return x//15
-
-        moive_running_time = moive_running_time.apply(make_range)
-        moive_running_time = pd.DataFrame(moive_running_time.value_counts())
-        moive_running_time['index'] = moive_running_time.reset_index()['index']*15
-
-        ax2.bar(x = moive_running_time['index'], height = moive_running_time['duration'],width=13,color ='red',alpha=0.5)
-        ax2.spines['right'].set_visible(False)
-        ax2.spines['top'].set_visible(False)
-        ax2.spines['left'].set_visible(False)
-        ax2.set_xlabel("Moive's Running time", font=font, color='#F5E9F5', fontsize=30)
-        ax2.tick_params(axis='x', colors='#F5E9F5',labelsize=20)
-        ax2.set_ylabel("")
-        ax2.set_ylabel("")
-        ax2.grid(True, alpha=0.4,axis='y')
-        ax2.tick_params(axis='y', colors='#F5E9F5',labelsize=15)
-
-
-        TV_seasons = data[data['type'] =='TV Show']['duration'].apply(lambda x : x.split(" ")[0])
-        TV_seasons = pd.to_numeric(TV_seasons)
-        TV_seasons = pd.DataFrame(TV_seasons.value_counts())
-        ax3.bar(x = TV_seasons.index, height = TV_seasons.duration,width=0.9,color ='red',alpha=0.5)
-        ax3.spines['right'].set_visible(False)
-        ax3.spines['top'].set_visible(False)
-        ax3.spines['left'].set_visible(False)
-        ax3.set_xlabel("TV Show's Seasons", font=font, color='#F5E9F5', fontsize=30)
-        ax3.tick_params(axis='x', colors='#F5E9F5',labelsize=20)
-        ax3.set_ylabel("")
-        ax3.set_ylabel("")
-        ax3.grid(True, alpha=0.4,axis='y')
-        ax3.tick_params(axis='y', colors='#F5E9F5',labelsize=15)
-
-        ax.set_xticks([])
-        ax.set_yticks([])
-
-        st.pyplot(fig)
-        st.info("📌Os filmes tem maior preferências em relação a séries entre os assinantes da Netflix.")
-        st.divider()
+    
 
     ############# Gráfico 4 ################################################################
-    if not st.checkbox('Ocultar gráfico 4', False, key=6): 
+    if not st.checkbox('Ocultar gráfico 3', False, key=6): 
         st.subheader("📊 Quais são os gêneros favoritos de filmes e séries?", divider='red')
 
         movie_genre = []
