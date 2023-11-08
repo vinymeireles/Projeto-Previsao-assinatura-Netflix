@@ -147,12 +147,12 @@ if st.sidebar.checkbox("📝 **Estatística**", False, key=1):
 ############ Mostrar Gráficos ########################################################
 
 if st.sidebar.checkbox("📊 **Gráficos**", False, key=2):
+    with st.spinner("Aguarde! Carregando gráficos..."):
+            time.sleep(20)
     st.subheader("🌍 Netflix: Popularidade mundial", divider='red')
     if not st.checkbox('Ocultar gráfico 1', False, key=3):    
         st.markdown("")
-        with st.spinner("Aguarde..."):
-            time.sleep(20)
-
+        
     #Gráfico 1 Mundial Mapa
         country = data['country']
         country = list(country)
@@ -230,12 +230,9 @@ if st.sidebar.checkbox("📊 **Gráficos**", False, key=2):
         ax.text(s="Quais países que a Netflix é mais popular?", x= 0,y=1.05, font=font,color='#F5E9F5',fontsize=50)
         st.pyplot(fig)
         st.info("📌 Os Estados Unidos possuem 35,5% da totalidade mundial de assinantes.")
-        st.divider()
+          
 
     ############# Gráfico 3 ################################################################
-    
-
-    ############# Gráfico 4 ################################################################
     if not st.checkbox('Ocultar gráfico 3', False, key=6): 
         st.subheader("📊 Quais são os gêneros favoritos de filmes e séries?", divider='red')
 
@@ -300,8 +297,11 @@ if st.sidebar.checkbox("📊 **Gráficos**", False, key=2):
 
         st.pyplot(fig)
         st.info("📌Comparando os gêneros de filmes e séries favoritos do Netflix, temos que o 1º, 2º e 3º são os mesmos que Internacionais, Dramas, Comédias.")
-   
-        #Gráfico 5
+
+        st.divider()
+
+        ############# Gráfico 4 ################################################################
+      
         if not st.checkbox('Ocultar gráfico 4', False, key=7): 
             st.subheader("🌍 País aonde o ator mais atuou nos Filmes e Séries", divider='red')
             
@@ -325,7 +325,7 @@ if st.sidebar.checkbox("📊 **Gráficos**", False, key=2):
                 
             countries_actor[0] = 'United States of America'    
 
-            # Gráfico    
+            # Gráfico 4   
             fig, ax = plt.subplots(figsize=(25,15),facecolor="#363336")
             ax.patch.set_facecolor('#363336')
             world.plot(ax=ax, color ="#363336",edgecolor='black')

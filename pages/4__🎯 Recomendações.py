@@ -226,25 +226,6 @@ def fetch_poster(movie_id):
     full_path = "https://image.tmdb.org/t/p/w500/"+poster_path
     return full_path
 
-#imageCarouselComponent = components.declare_component("image-carousel-component", path="frontend/public")
-
-#imageUrls = [
-#    fetch_poster(1632),
-#    fetch_poster(299536),
-#    fetch_poster(17455),
-#    fetch_poster(2830),
-#    fetch_poster(429422),
-#    fetch_poster(9722),
-#    fetch_poster(13972),
-#    fetch_poster(240),
-#    fetch_poster(155),
-#    fetch_poster(598),
-#    fetch_poster(914),
-#    fetch_poster(255709),
-#    fetch_poster(572154)
-#    ]
-
-#imageCarouselComponent(imageUrls=imageUrls, height=200)
 
 #################### Mostrar Previsões: Desenvolvendo mecanismo de recomendação Filmes e séries ###################################################################
 if st.sidebar.checkbox("🎯**Previsões**", False, key=8):
