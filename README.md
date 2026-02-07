@@ -5,6 +5,10 @@ Sistema inteligente de **recomendação e análise de conteúdo** baseado em **M
 
 > Projeto demonstrativo desenvolvido no ecossistema **VIMEUP | AI Solutions**
 
+<p align="left">
+  <img src="img/Logo RecoFlix AI.png" alt="RecoFlix AI Logo" width="220"/>
+</p>
+
 ---
 
 ## 🚀 Visão Geral
